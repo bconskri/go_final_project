@@ -19,7 +19,7 @@ import (
 var Db *gorm.DB
 
 func getDBPath() string {
-	const DBFile = "../scheduler.db"
+	const DBFile = "scheduler.db"
 	if val, exists := os.LookupEnv("TODO_DBFILE"); exists {
 		return val
 	}

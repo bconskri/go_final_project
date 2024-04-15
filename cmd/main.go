@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -20,12 +21,14 @@ func getPort() string {
 }
 
 func main() {
-	const webDir = "../web"
+	const webDir = "./web"
 
+	fmt.Println("DB connect")
 	database.ConnectDB()
-
+	fmt.Println("DB connected")
 	myHandler := chi.NewRouter()
 
+	fmt.Println("Register handlers")
 	myHandler.Mount("/", http.FileServer(http.Dir(webDir)))
 	myHandler.Get("/api/nextdate", handlers.NextDateGET)
 	myHandler.Post("/api/task", handlers.TaskPost)
@@ -34,6 +37,8 @@ func main() {
 	myHandler.Put("/api/task", handlers.TaskUpdate)
 	myHandler.Post("/api/task/done", handlers.TaskDone)
 	myHandler.Delete("/api/task", handlers.TaskDelete)
+
+	fmt.Printf("Starting server on port %s\n", getPort())
 
 	s := &http.Server{
 		Addr:           getPort(),
