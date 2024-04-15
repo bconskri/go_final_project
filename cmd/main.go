@@ -23,6 +23,20 @@ func getPort() string {
 func main() {
 	const webDir = "./web"
 
+	// ex, err := os.Executable() // путь к исполняемому файлу где он компилится во временном каталоге
+	// if err != nil {
+	// 	panic(err)
+	// }
+	// exPath := filepath.Dir(ex)
+	// fmt.Println(exPath)
+
+	// pwd, err := os.Getwd() // рабочий каталог где находится наша программа
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	os.Exit(1)
+	// }
+	// fmt.Println(pwd)
+
 	fmt.Println("DB connect")
 	database.ConnectDB()
 	fmt.Println("DB connected")
